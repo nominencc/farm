@@ -2,7 +2,7 @@
   <div>
     
   <div class="echart1" v-if="isTudi2">
-    <div id="echartsTitleToRight">土壤酸碱度&电导率1</div>
+    <div id="echartsTitleToLeft" style="opacity:0.7">土壤酸碱度&电导率1</div>
     <farm-chart-1 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-1>
   </div>
   <div class="echart4" v-if="isTudi1">
@@ -14,7 +14,7 @@
     <farm-chart-7 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-7>
   </div>
   <div class="echart2" v-if="isTudi2">
-    <div id="echartsTitleToLeft">土壤温湿度2</div>
+    <div id="echartsTitleToLeft" style="opacity:0.7">土壤温湿度2</div>
     <farm-chart-2 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-2>
   </div>
   <div class="echart5" v-if="isTudi1">
@@ -27,7 +27,7 @@
   </div>
 
   <div class="echart3" v-if="isTudi2">
-    <div id="echartsTitleToLeft">氮磷钾含量3</div>
+    <div id="echartsTitleToLeft" style="opacity:0.7">氮磷钾含量3</div>
     <farm-chart-3 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-3>
   </div>
   <div class="echart6" v-if="isTudi1">
@@ -210,7 +210,7 @@ export default {
       // 创建相机
       this.camera = new THREE.PerspectiveCamera(60, width / height, 1, 2000000)
       //相机位置
-      this.camera.position.set(-2000,700,0)
+      this.camera.position.set(-2500,1100,0)
       // 场景添加相机
       this.scene.add(this.camera)
        // 创建渲染器
@@ -662,66 +662,60 @@ export default {
 
 .table1{
   position: absolute;
-  left:0px;
+  left:0%;
   top:20px
 }
 table{
-  /* width:70%; */
     /* 阴影 */
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    /* border-collapse:collapse;取消表格边框 */
+    /*取消表格边框 */
     border-collapse:collapse;
     letter-spacing:1px;/* 文字缩进 */
-    /* background: linear-gradient(to right,#08609399,#344b5800); */
 }
 table,th,tr,td{ 
-    border-bottom:1px solid #ffffff;/* 表格横线 */
+    /* 表格横线 */
+    border-bottom:1px solid #ffffff;
     padding:7px;
     color:#fcf7f7cc
 }
 #n1 {
   text-align: left;
 }
-/* caption{
-  font-weight:bolder
-} */
+
 .echart2,.echart5,.echart8{
-  position: absolute;
-  left:647px;
-  top:20px;
-  /* text-align: center; */
-  /* z-index: 2; */
+  position: fixed;
+  right:0%;
+  top:1%;
 }
 .echart1,.echart4,.echart7{
-  position: absolute;
-  /* left:150px; */
+  position: fixed;
   right:0px;
-  bottom:20px;
-  /* text-align: center; */
-  /* z-index: 3; */
+  top:67%;
 }
 .echart3,.echart6,.echart9{
-  position:absolute;
-  left:0px;
-  bottom: 20px;
+  position:fixed;
+  right:0px;
+  top: 34%;
+  /* opacity:0.5 */
 
 }
 .chart-wrapper {
-    /* background: #fff; */
-    position:absolute;
-    top:20px;
-    right:0px;
+    position:fixed;
+    top:29%;
+    left:-3%;
   }
 #echartsTitleToLeft{
-  background-color: #08609366;
-  background: linear-gradient(to left,#08609399,#344b5800);
+  /* background-color: #08609366; */
+  background: transparent;
+  /* background: linear-gradient(to left,#08609399,#344b5800); */
   text-align:center;
   color:#fff;
   font-size: 15;
 }
 #echartsTitleToRight{
-  background-color: #08609366;
-  background: linear-gradient(to right,#08609399,#344b5800);
+  /* background-color: #08609366; */
+  background: transparent;
+  /* background: linear-gradient(to right,#08609399,#344b5800); */
   text-align:center;
   color:#fff;
   font-size: 15;
@@ -729,6 +723,5 @@ table,th,tr,td{
 #container {
   height: 100vh;
   width: 100vw;
-  /* z-index: 1; */
 }
 </style>

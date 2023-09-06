@@ -73,16 +73,16 @@ export default{
 </script>
 <style>
 table{
-    /* 阴影 */
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     /*取消表格边框 */
     border-collapse:collapse;
     /* 文字缩进 */
     letter-spacing:1px;
+    font-size:  0.9em;;
+    /* background-color: transparent ; */
 }
-tr{ /* 表格横线 */
-    border-bottom:1px solid #ffffff;
+tr{
     color:#fcf7f7cc;
+    opacity: 0.7;
 }
 
 #n1 {

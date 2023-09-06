@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" style="width:550px;height: 300px;" />
+  <div :class="className" style="width:25vw;height: 33vh;" />
 </template>
 
 <script>
@@ -55,17 +55,29 @@ export default {
         radar: {
           radius: '66%',
           center: ['50%', '42%'],
+          //网格线设置为透明
+          splitLine:{
+            lineStyle:{
+              color:"rgba(255,255,255,0.5)"
+            }
+          },
+          //轴线设置为透明
+          axisTick:{
+            lineStyle:{
+              color:"rgba(255,255,255,0.5)"
+            }
+          },
           //网格数
           splitNumber: 8,
           splitArea: {
             areaStyle: {
-              color: 'rgba(127,95,132,.3)',
-              opacity: 1,
+              color: 'rgba(127,95,132,0)',
+              // opacity: 0.5,
               shadowBlur: 45,
               shadowColor: 'rgba(0,0,0,.5)',
               shadowOffsetX: 0,
               shadowOffsetY: 15
-            }
+            },
           },
           indicator: [
             { name: '土壤温度', max: 40 },
