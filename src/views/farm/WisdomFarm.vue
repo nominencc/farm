@@ -42,7 +42,7 @@
           <radder-chart></radder-chart>
   </div>
   <div class="table1">
-    <table-one :Currentdata2="data2"></table-one>
+    <table-one :Currentdata1="data1" :Currentdata2="data2" :Currentdata3="data3" ></table-one>
   </div>
   <div id="container" ></div>
   </div>
@@ -92,14 +92,32 @@ export default {
       pointList1: [],
       pointList2: [],
       pointList3: [],
+      data1:{
+        temperature:(Math.random() * 40.0).toFixed(1),
+        humidity:(Math.random() * 65 + 5).toFixed(0),
+        PHValue:(Math.random() * 5 + 4).toFixed(1),
+        N:(Math.random() * 300 + 50).toFixed(0),
+        P:(Math.random() * 480 + 20).toFixed(0),
+        K:(Math.random() * 800 + 200).toFixed(0),
+        conduct:(Math.random() * 65 + 5).toFixed(0),
+      },
       data2:{
         temperature:(Math.random() * 40.0).toFixed(1),
         humidity:(Math.random() * 65 + 5).toFixed(0),
         PHValue:(Math.random() * 5 + 4).toFixed(1),
         N:(Math.random() * 300 + 50).toFixed(0),
         P:(Math.random() * 480 + 20).toFixed(0),
-        K:(Math.random() * 65 + 5).toFixed(0),
-        conduct:(Math.random() * 980 + 20).toFixed(0),
+        K:(Math.random() * 800 + 200).toFixed(0),
+        conduct:(Math.random() * 65 + 5).toFixed(0),
+      },
+      data3:{
+        temperature:(Math.random() * 40.0).toFixed(1),
+        humidity:(Math.random() * 65 + 5).toFixed(0),
+        PHValue:(Math.random() * 5 + 4).toFixed(1),
+        N:(Math.random() * 300 + 50).toFixed(0),
+        P:(Math.random() * 480 + 20).toFixed(0),
+        K:(Math.random() * 800 + 200).toFixed(0),
+        conduct:(Math.random() * 65 + 5).toFixed(0),
       },
       headers:{
         Accesstoken:"e500f9884cd4ce06d0ade3ac163eccf4", 

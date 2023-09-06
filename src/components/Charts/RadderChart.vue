@@ -69,12 +69,12 @@ export default {
           },
           indicator: [
             { name: '土壤温度', max: 40 },
-            { name: '土壤湿度', max: 20 },
-            { name: '土壤PH', max: 20 },
-            { name: '土壤氮', max: 20 },
-            { name: '土壤磷', max: 20 },
-            { name: '土壤钾', max: 20 },
-            { name: '土壤电导率', max: 20 }
+            { name: '土壤湿度', max: 70 },
+            { name: '土壤PH', max: 9 },
+            { name: '土壤氮', max: 350 },
+            { name: '土壤磷', max: 500 },
+            { name: '土壤钾', max: 1000 },
+            { name: '土壤电导率', max: 70 }
           ]
         },
         legend: {
@@ -99,15 +99,39 @@ export default {
           },
           data: [
             {
-              value: [25.6, 10, 7, 5, 3, 7,2],
+              value: [
+              (Math.random() * 40.0).toFixed(1), 
+              (Math.random() * 65 + 5).toFixed(0), 
+              (Math.random() * 5 + 4).toFixed(1), 
+              (Math.random() * 300 + 50).toFixed(0), 
+              (Math.random() * 480 + 20).toFixed(0),
+              (Math.random() * 800 + 200).toFixed(0),
+              (Math.random() * 65 + 5).toFixed(0),
+              ],
               name: '土地1'
             },
             {
-              value: [28.6, 8, 9, 6, 2, 5,3],
+              value: [
+              (Math.random() * 40.0).toFixed(1), 
+              (Math.random() * 65 + 5).toFixed(0), 
+              (Math.random() * 5 + 4).toFixed(1), 
+              (Math.random() * 300 + 50).toFixed(0), 
+              (Math.random() * 480 + 20).toFixed(0),
+              (Math.random() * 800 + 200).toFixed(0),
+              (Math.random() * 65 + 5).toFixed(0),
+              ],
               name: '土地2'
             },
             {
-              value: [24.2, 15, 9, 3, 5, 6,1],
+              value: [
+              (Math.random() * 40.0).toFixed(1), 
+              (Math.random() * 65 + 5).toFixed(0), 
+              (Math.random() * 5 + 4).toFixed(1), 
+              (Math.random() * 300 + 50).toFixed(0), 
+              (Math.random() * 480 + 20).toFixed(0),
+              (Math.random() * 800 + 200).toFixed(0),
+              (Math.random() * 65 + 5).toFixed(0),
+              ],
               name: '土地3'
             }
           ],
