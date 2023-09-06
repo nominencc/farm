@@ -1,5 +1,6 @@
 <template>
   <div>
+    
   <div class="echart1" v-if="isTudi2">
     <div id="echartsTitleToRight">土壤酸碱度&电导率1</div>
     <farm-chart-1 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-1>
@@ -41,51 +42,9 @@
           <radder-chart></radder-chart>
   </div>
   <div class="table1">
-    <table>
-      <!-- <caption>土壤墒情</caption> -->
-    <tr>
-    <th id="n1">检测参数</th>
-    <th>当前值</th>
-    <th>更新时间</th>
-    </tr>
-    <tr>
-        <td>土壤温度</td>
-        <td>25.6℃</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-    <tr>
-        <td>土壤湿度</td>
-        <td>10%RH</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-    <tr>
-        <td>土壤PH</td>
-        <td>7PH</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-    <tr>
-        <td>土壤氮</td>
-        <td>5mg/kg</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-    <tr>
-        <td>土壤磷</td>
-        <td>3mg/kg</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-    <tr>
-        <td>土壤钾</td>
-        <td>7mg/kg</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-    <tr>
-        <td>土壤电导率</td>
-        <td>2us/cm</td>
-        <td>2023-8-23 12:50</td>
-    </tr>
-</table> 
+    <table-one :Currentdata2="data2"></table-one>
   </div>
-  <div id="container" />
+  <div id="container" ></div>
   </div>
 </template>
 
@@ -105,11 +64,12 @@ import FarmChart7 from '@/components/Charts/FarmChart7.vue';
 import FarmChart8 from '@/components/Charts/FarmChart8.vue';
 import FarmChart9 from '@/components/Charts/FarmChart9.vue';
 import RadderChart from '@/components/Charts/RadderChart.vue';
+import TableOne from '@/components/Charts/TableOne.vue'
 import {Sky} from 'three/examples/jsm/objects/Sky.js'
 import axios from 'axios'
 import md5 from "js-md5"
 export default {
-  components: { FarmChart1,FarmChart2,FarmChart3,RadderChart,FarmChart4,FarmChart5,FarmChart6,FarmChart7,FarmChart8,FarmChart9},
+  components: { FarmChart1,FarmChart2,FarmChart3,RadderChart,FarmChart4,FarmChart5,FarmChart6,FarmChart7,FarmChart8,FarmChart9,TableOne},
   name: "WisdomFarm",
   data() {
     return {
@@ -125,36 +85,45 @@ export default {
 					azimuth: 90,
 					exposure: 0.5
 				},
-        config:{
+      config:{
           // range1:[270+170],
           count:500
         },
-        pointList1: [],
-        pointList2: [],
-        pointList3: [],
-        headers:{
-          Accesstoken:"e500f9884cd4ce06d0ade3ac163eccf4", 
-          Appid:"1060859541382086656f0001",
-          Keyid:"K.1060859541424029698",
-          Nonce:Math.random().toString(), //随机字符串，每次请求都不同
-          Time:new Date().getTime(),  //请求时间戳，单位毫秒
-          Sign:"",  //请求签名
-          Lang:"zh", //非必填
-          AppKey:"3q3z9ax7czqji7fe8m69rqrbzmi4yr94"
-          // ACCOUNT_ID:  1101220230418000000
-          // ACCOUNT_NAME:  绿米测试账户5楼会议室
-          // APP_ID:  1060859541382086656f0001
-          // KEY_ID:  K.1060859541424029698
-          // APP_KEY: 3q3z9ax7czqji7fe8m69rqrbzmi4yr94
-          // ACCESS_TOKEN:  leddedd678a18559768bf5a1662e9a45
-          // REFRESH_TOKEN: 08edfbc5cd1a9e556577608a1ale332d
-          // REFRESH_TIME:  2023-08-2509:27:59
-          // FLAG:  00
-          // URL: http://10.224.52.152:2048/api
-          // ACCOUNT_TYPE:  00
-          // USER_CODE:  18148413696
-          // AIR_CODE:  939144294com
-        }
+      pointList1: [],
+      pointList2: [],
+      pointList3: [],
+      data2:{
+        temperature:(Math.random() * 40.0).toFixed(1),
+        humidity:(Math.random() * 65 + 5).toFixed(0),
+        PHValue:(Math.random() * 5 + 4).toFixed(1),
+        N:(Math.random() * 300 + 50).toFixed(0),
+        P:(Math.random() * 480 + 20).toFixed(0),
+        K:(Math.random() * 65 + 5).toFixed(0),
+        conduct:(Math.random() * 980 + 20).toFixed(0),
+      },
+      headers:{
+        Accesstoken:"e500f9884cd4ce06d0ade3ac163eccf4", 
+        Appid:"1060859541382086656f0001",
+        Keyid:"K.1060859541424029698",
+        Nonce:Math.random().toString(), //随机字符串，每次请求都不同
+        Time:new Date().getTime(),  //请求时间戳，单位毫秒
+        Sign:"",  //请求签名
+        Lang:"zh", //非必填
+        AppKey:"3q3z9ax7czqji7fe8m69rqrbzmi4yr94"
+        // ACCOUNT_ID:  1101220230418000000
+        // ACCOUNT_NAME:  绿米测试账户5楼会议室
+        // APP_ID:  1060859541382086656f0001
+        // KEY_ID:  K.1060859541424029698
+        // APP_KEY: 3q3z9ax7czqji7fe8m69rqrbzmi4yr94
+        // ACCESS_TOKEN:  leddedd678a18559768bf5a1662e9a45
+        // REFRESH_TOKEN: 08edfbc5cd1a9e556577608a1ale332d
+        // REFRESH_TIME:  2023-08-2509:27:59
+        // FLAG:  00
+        // URL: http://10.224.52.152:2048/api
+        // ACCOUNT_TYPE:  00
+        // USER_CODE:  18148413696
+        // AIR_CODE:  939144294com
+      }
     }
   },
   mounted() {
@@ -186,11 +155,9 @@ export default {
             if (child.isMesh) {
               child.material.emissive = child.material.color
               child.material.emissiveMap = child.material.map
-
               geoArr.push(child.geometry.clone().applyMatrix4(child.matrixWorld))
             }
           })
-          // console.log(group.children)
           //获取3个土地对象
           this.tudis = []
           this.tudis.push(group.getObjectByName('tudi_1'))
@@ -200,25 +167,13 @@ export default {
           this.tudiBox1 = new THREE.Box3Helper(new THREE.Box3().setFromObject (this.tudis[0]).translate(new THREE.Vector3(0,0,-105)),0xffff00)
           this.tudiBox2 = new THREE.Box3Helper(new THREE.Box3().setFromObject (this.tudis[1]).translate(new THREE.Vector3(0,0,-95)),0xffff00)
           this.tudiBox3 = new THREE.Box3Helper(new THREE.Box3().setFromObject (this.tudis[2]).translate(new THREE.Vector3(0,0,-95)),0xffff00)
-          // const Box1 = new THREE.Box3().setFromObject (this.tudis[0])
-          // this.tudiBox1 = new THREE.Box3Helper(Box1,0xffff00)
-          // 包装盒偏移
-          // box.translate(new THREE.Vector3(0,0,-95))
-          
           let geo = BufferGeometryUtils.mergeGeometries(geoArr, false)
-          // let material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
-
-          // let mesh = new THREE.Mesh(geo, material)
-
           let edge = new THREE.EdgesGeometry(geo)
           new THREE.LineSegments(edge, new THREE.LineBasicMaterial({
             color: 0xffffff
           }))
           group.position.set(0, 0, -100)
-          // console.log('group:',group)
-          // console.log(group.children)
           this.scene.add(group)
-          // this.scene.add(mesh)
         })
 
       this.time = {
@@ -236,19 +191,10 @@ export default {
       this.scene.add(new THREE.AmbientLight(new THREE.Color('#ffffff'), 1))
       // 创建相机
       this.camera = new THREE.PerspectiveCamera(60, width / height, 1, 2000000)
-      // this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 100, 2000000)
       //相机位置
       this.camera.position.set(-2000,700,0)
-      // this.camera.position.set(0,0,10)
-      //官方demo位置
-      // this.camera.position.set(0,100,2000)
       // 场景添加相机
       this.scene.add(this.camera)
-      
-      // 坐标格辅助对象. 坐标格实际上是2维线数组.
-			// const helper = new THREE.GridHelper( 3000, 2, 0xffffff, 0xffffff );
-			// const helper = new THREE.GridHelper( 10000, 2, 0xffffff, 0xffffff );
-			// this.scene.add( helper );
        // 创建渲染器
       this.renderer = new THREE.WebGLRenderer()
       // 设置大小
