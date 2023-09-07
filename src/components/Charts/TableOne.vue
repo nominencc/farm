@@ -79,6 +79,7 @@ table{
     /* 文字缩进 */
     letter-spacing:1px;
     /* background-color: transparent ; */
+    width: 100%;
 }
 tr{
     color:#fcf7f7cc;

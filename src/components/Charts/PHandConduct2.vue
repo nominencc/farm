@@ -129,14 +129,19 @@ export default {
           axisLabel: {
             color: '#fff' 
           },
+          //消除横线
+          splitLine:{
+          show:false
+          }
         }
       ],
         //一组数值以及他们映射成的图
         series: [  
         {
+          yAxisIndex:0,
           name: '酸碱度',
-          type: 'bar',
-          // smooth: true,
+          type: 'line',
+          smooth: true,
           data: (() => {
             let arr = []
             for(let i = 0; i<7;i++){
@@ -146,6 +151,7 @@ export default {
           })()
         },
         {
+          yAxisIndex:1,
           name: '电导率',
           type: 'line',
           smooth: true,

@@ -1,11 +1,11 @@
 <template>
-  <div id="main5" style="width:30vw;height: 30vh;"></div>
+  <div id="main8" style="width:30vw;height: 30vh;"></div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
 export default {
-  name: 'ECharts5',
+  name: 'TempAndHumi3',
   data() {
     return {
       option: {
@@ -144,7 +144,7 @@ export default {
       // this.scene = new THREE.Scene()
     },
     initEcharts() {
-      this.myChart = echarts.init(document.getElementById('main5'));
+      this.myChart = echarts.init(document.getElementById('main8'));
       this.myChart.setOption(this.option);
     },
     creatdata(){

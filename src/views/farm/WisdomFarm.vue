@@ -3,40 +3,39 @@
     
   <div class="echart1" v-if="isTudi2">
     <div id="echartsTitleToLeft" >土壤酸碱度&电导率2</div>
-    <farm-chart-1 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-1>
+    <p-hand-conduct-2 @begin2="addSnow2" @stop2="removeSnow2"></p-hand-conduct-2>
   </div>
   <div class="echart4" v-if="isTudi1">
     <div id="echartsTitleToRight">土壤酸碱度&电导率1</div>
-    <farm-chart-4 @begin1="addSnow1" @stop1="removeSnow1"></farm-chart-4>
+    <p-hand-conduct-1 @begin1="addSnow1" @stop1="removeSnow1"></p-hand-conduct-1>
   </div>
   <div class="echart7" v-if="isTudi3">
     <div id="echartsTitleToRight">土壤酸碱度&电导率3</div>
-    <farm-chart-7 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-7>
+    <p-hand-conduct-3 @begin3="addSnow3" @stop3="removeSnow3"></p-hand-conduct-3>
   </div>
   <div class="echart2" v-if="isTudi2">
     <div id="echartsTitleToLeft">土壤温湿度2</div>
-    <farm-chart-2 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-2>
+    <temp-and-humi-2 @begin2="addSnow2" @stop2="removeSnow2"></temp-and-humi-2>
   </div>
   <div class="echart5" v-if="isTudi1">
     <div id="echartsTitleToLeft">土壤温湿度1</div>
-    <farm-chart-5 @begin1="addSnow1" @stop1="removeSnow1"></farm-chart-5>
+    <temp-and-humi-1 @begin1="addSnow1" @stop1="removeSnow1"></temp-and-humi-1>
   </div>
   <div class="echart8" v-if="isTudi3">
     <div id="echartsTitleToLeft">土壤温湿度3</div>
-    <farm-chart-8 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-8>
+    <temp-and-humi-3 @begin3="addSnow3" @stop3="removeSnow3"></temp-and-humi-3>
   </div>
-
   <div class="echart3" v-if="isTudi2">
     <div id="echartsTitleToLeft">氮磷钾含量2</div>
-    <farm-chart-3 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-3>
+    <Nk-p-2 @begin2="addSnow2" @stop2="removeSnow2"></Nk-p-2>
   </div>
   <div class="echart6" v-if="isTudi1">
     <div id="echartsTitleToLeft">氮磷钾含量1</div>
-    <farm-chart-6 @begin1="addSnow1" @stop1="removeSnow1"></farm-chart-6>
+    <Nk-p-1 @begin1="addSnow1" @stop1="removeSnow1"></Nk-p-1>
   </div>
   <div class="echart9" v-if="isTudi3">
     <div id="echartsTitleToLeft">氮磷钾含量3</div>
-    <farm-chart-9 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-9>
+    <Nk-p-3 @begin3="addSnow3" @stop3="removeSnow3"></Nk-p-3>
   </div>
   <div class="chart-wrapper" >
           <radder-chart></radder-chart>
@@ -52,24 +51,24 @@
 <script>
 import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
-import FarmChart1 from '@/components/Charts/FarmChart1.vue';
-import FarmChart2 from '@/components/Charts/FarmChart2.vue';
+import PHandConduct2 from '@/components/Charts/PHandConduct2.vue';
+import TempAndHumi2 from '@/components/Charts/TempAndHumi2.vue';
 import { loadObj } from '@/utils';
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js'  //BufferGeometry是面片、线或点几何体的有效表述。包括顶点位置，面片索引、法相量、颜色值、UV 坐标和自定义缓存属性值。使用 BufferGeometry 可以有效减少向 GPU 传输上述数据所需的开销。
-import FarmChart3 from '@/components/Charts/FarmChart3.vue';
-import FarmChart4 from '@/components/Charts/FarmChart4.vue';
-import FarmChart5 from '@/components/Charts/FarmChart5.vue';
-import FarmChart6 from '@/components/Charts/FarmChart6.vue';
-import FarmChart7 from '@/components/Charts/FarmChart7.vue';
-import FarmChart8 from '@/components/Charts/FarmChart8.vue';
-import FarmChart9 from '@/components/Charts/FarmChart9.vue';
+import NkP2 from '@/components/Charts/NkP2.vue';
+import PHandConduct1 from '@/components/Charts/PHandConduct1.vue';
+import TempAndHumi1 from '@/components/Charts/TempAndHumi1.vue';
+import NkP1 from '@/components/Charts/NkP1.vue';
+import PHandConduct3 from '@/components/Charts/PHandConduct3.vue';
+import TempAndHumi3 from '@/components/Charts/TempAndHumi3.vue';
+import NkP3 from '@/components/Charts/NkP3.vue';
 import RadderChart from '@/components/Charts/RadderChart.vue';
 import TableOne from '@/components/Charts/TableOne.vue'
 import {Sky} from 'three/examples/jsm/objects/Sky.js'
 import axios from 'axios'
 import md5 from "js-md5"
 export default {
-  components: { FarmChart1,FarmChart2,FarmChart3,RadderChart,FarmChart4,FarmChart5,FarmChart6,FarmChart7,FarmChart8,FarmChart9,TableOne},
+  components: { PHandConduct2,TempAndHumi2,NkP2,RadderChart,PHandConduct1,TempAndHumi1,NkP1,PHandConduct3,TempAndHumi3,NkP3,TableOne},
   name: "WisdomFarm",
   data() {
     return {
@@ -652,7 +651,7 @@ export default {
 <style scoped>
 
 .table1{
-  position: absolute;
+  position: fixed;
   left:0%;
   top:20px
 }

@@ -1,20 +1,19 @@
 <template>
-  <div id="main4"></div>
+  <div id="main2" style="width:30vw;height: 30vh;"></div>
 </template>
 
 <script>
 import * as echarts from 'echarts'
 export default {
-  name: 'ECharts7',
+  name: 'TempAndHumi1',
   data() {
     return {
       option: {
-        //实时显示被拖拽的点的data值的变化
-        tooltip: {},  
+        tooltip: {},  //实时显示被拖拽的点的data值的变化
+        //自定义按钮
         toolbox:{
           show:true,
           left:100,
-          //浇水按钮大小
           itemSize:20,
           feature:{
             myWater:{
@@ -58,13 +57,12 @@ export default {
             }
           }
         },
-        
         legend: {   //图例组件
           top: '10px',
           right: '90px',
-          data: ['酸碱度','电导率'],
+          data: ['土壤温度','土壤湿度'],
           textStyle: {
-            color: '#fff',
+            color:'#fff',
             fontSize:15,
             opacity:0.5
           }
@@ -73,35 +71,13 @@ export default {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
           axisLabel: {
             color: '#fff',
-            opacity:0.5,
-            fontSize: 12,
-
-            //x轴文本自动换行
-            interval: 0,
-            formatter: function (params) {
-              let newParamsName = ''
-              const paramsNameNumber = params.length // 获取文数总长度
-              const provideNumber = 4 //控制每行的字段
-              const rowNumber = Math.ceil(paramsNameNumber / provideNumber)
-              if (paramsNameNumber > provideNumber) {
-                for (let p = 0; p < rowNumber; p++) {
-                  const start = p * provideNumber
-                  const end = start + provideNumber
-                  const tempStr = p === rowNumber - 1 ? params.substring(start, paramsNameNumber) :
-                    params.substring(start, end) + '\n'
-                  newParamsName += tempStr
-                }
-              } else {
-                newParamsName = params
-              }
-              return newParamsName
-            },
-
+            fontSize:12,
+            opacity:0.5
           }
         },
         yAxis: [
         {
-          name:"酸碱值：PH",
+          name:"温度：℃",
           position:"left",
           yAxisIndex:0,
           nameTextStyle:{
@@ -118,7 +94,7 @@ export default {
           }
         },
         {
-          name:"电导率：us/cm",
+          name:"湿度：%RH",
           position:"right",
           yAxisIndex:1,
           nameTextStyle:{
@@ -126,74 +102,74 @@ export default {
             opacity:0.5
           },
           axisLabel: {
-            color: '#fff' 
+            color: '#fff',
+            opacity:0.5
           },
-        }
+          splitLine:{
+          show:false
+          }
+        }, 
       ],
-        //一组数值以及他们映射成的图
-        series: [  
+        //一组数值以及他们映射成的图。 type：line(折线图)、bar(柱状图)、pie(饼图)、scatter(散点图)、graph(关系图、tree(树图))
+        series:
+        [
         {
-          name: '酸碱度',
-          type: 'bar',
-          // smooth: true,
+          yAxisIndex:0,
+          name: '土壤温度',
+          type: 'line',
+          smooth: true,
+          // data: [20, 30, 15, 18, 34, 20,25],
           data: (() => {
             let arr = []
             for(let i = 0; i<7;i++){
-              arr.push((Math.random() * 5 + 4).toFixed(1))
+              arr.push(Math.random() * 65 + 5)
             }
             return arr
           })()
         },
         {
-          name: '电导率',
+          yAxisIndex:1,
+          name: '土壤湿度',
           type: 'line',
           smooth: true,
-          data: (() => {
-            let arr = []
-            for(let i = 0; i<7;i++){
-              arr.push((Math.random() * 65 + 5).toFixed(0))
-            }
-            return arr
-          })()
+          data:this.creatdata()
         }
-      ]
+        ]
       },
       myChart: null
     }
   },
-
   methods: {
+    init(){
+      // this.scene = new THREE.Scene()
+    },
     initEcharts() {
-      this.myChart = echarts.init(document.getElementById('main4'));
+      this.myChart = echarts.init(document.getElementById('main2'));
       this.myChart.setOption(this.option);
-      // console.log(this.myChart)
     },
-    //计算echarts字体大小
-    fontSize(px) {  //传入字体大小
-      let clientWidth = window.innerWidth || document.body.clientWidth; //屏幕尺寸
-      if (!clientWidth) {
-        return 0;
+    creatdata(){
+      let arr = []
+      for(let i = 0; i<7;i++){
+        arr.push(Math.random() * 65 + 5)
       }
-      let fontSize = clientWidth / 1920;
-      return px * fontSize;
+      return arr
     },
+    
     waterstart(){
-      this.$emit("begin1")
+      this.$emit("begin2")
+      //子传父。让父组件的createExtra调用：this.createExtra()
     },
     waterstop(){
-      this.$emit("stop1")
+      this.$emit("stop2")
     }
   },
-
   mounted() {
     this.initEcharts()
   }
 }
 </script>
 <style>
-#main4 {
+#main2 {
   background: transparent;
-  width: 30vw;
-  height: 30vh;
 }
 </style>
