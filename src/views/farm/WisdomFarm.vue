@@ -1,44 +1,44 @@
 <template>
   <div>
     
-  <div class="echart1" v-if="isTudi2">
-    <div id="echartsTitleToLeft" >土壤酸碱度&电导率2</div>
-    <p-hand-conduct-2 @begin2="addSnow2" @stop2="removeSnow2"></p-hand-conduct-2>
-  </div>
   <div class="echart4" v-if="isTudi1">
     <div id="echartsTitleToRight">土壤酸碱度&电导率1</div>
     <p-hand-conduct-1 @begin1="addSnow1" @stop1="removeSnow1"></p-hand-conduct-1>
+  </div>
+  <div class="echart1" v-if="isTudi2">
+    <div id="echartsTitleToLeft" >土壤酸碱度&电导率2</div>
+    <p-hand-conduct-2 @begin2="addSnow2" @stop2="removeSnow2"></p-hand-conduct-2>
   </div>
   <div class="echart7" v-if="isTudi3">
     <div id="echartsTitleToRight">土壤酸碱度&电导率3</div>
     <p-hand-conduct-3 @begin3="addSnow3" @stop3="removeSnow3"></p-hand-conduct-3>
   </div>
-  <div class="echart2" v-if="isTudi2">
-    <div id="echartsTitleToLeft">土壤温湿度2</div>
-    <temp-and-humi-2 @begin2="addSnow2" @stop2="removeSnow2"></temp-and-humi-2>
-  </div>
   <div class="echart5" v-if="isTudi1">
     <div id="echartsTitleToLeft">土壤温湿度1</div>
     <temp-and-humi-1 @begin1="addSnow1" @stop1="removeSnow1"></temp-and-humi-1>
+  </div>
+  <div class="echart2" v-if="isTudi2">
+    <div id="echartsTitleToLeft">土壤温湿度2</div>
+    <temp-and-humi-2 @begin2="addSnow2" @stop2="removeSnow2"></temp-and-humi-2>
   </div>
   <div class="echart8" v-if="isTudi3">
     <div id="echartsTitleToLeft">土壤温湿度3</div>
     <temp-and-humi-3 @begin3="addSnow3" @stop3="removeSnow3"></temp-and-humi-3>
   </div>
-  <div class="echart3" v-if="isTudi2">
-    <div id="echartsTitleToLeft">氮磷钾含量2</div>
-    <Nk-p-2 @begin2="addSnow2" @stop2="removeSnow2"></Nk-p-2>
-  </div>
   <div class="echart6" v-if="isTudi1">
     <div id="echartsTitleToLeft">氮磷钾含量1</div>
     <Nk-p-1 @begin1="addSnow1" @stop1="removeSnow1"></Nk-p-1>
+  </div>
+  <div class="echart3" v-if="isTudi2">
+    <div id="echartsTitleToLeft">氮磷钾含量2</div>
+    <Nk-p-2 @begin2="addSnow2" @stop2="removeSnow2"></Nk-p-2>
   </div>
   <div class="echart9" v-if="isTudi3">
     <div id="echartsTitleToLeft">氮磷钾含量3</div>
     <Nk-p-3 @begin3="addSnow3" @stop3="removeSnow3"></Nk-p-3>
   </div>
   <div class="chart-wrapper" >
-          <radder-chart></radder-chart>
+    <radder-chart></radder-chart>
   </div>
   <div class="table1">
     <table-one :Currentdata1="data1" :Currentdata2="data2" :Currentdata3="data3" ></table-one>
@@ -68,12 +68,12 @@ import {Sky} from 'three/examples/jsm/objects/Sky.js'
 import axios from 'axios'
 import md5 from "js-md5"
 export default {
-  components: { PHandConduct2,TempAndHumi2,NkP2,RadderChart,PHandConduct1,TempAndHumi1,NkP1,PHandConduct3,TempAndHumi3,NkP3,TableOne},
+  components: { PHandConduct1,PHandConduct2,PHandConduct3,TempAndHumi1,TempAndHumi2,TempAndHumi3,NkP1,NkP2,NkP3,RadderChart,TableOne},
   name: "WisdomFarm",
   data() {
     return {
-      isTudi2: true,
       isTudi1: false,
+      isTudi2: true,
       isTudi3: false,
       effectController : {
 					turbidity: 10,
@@ -83,7 +83,7 @@ export default {
 					elevation: 4,
 					azimuth: 90,
 					exposure: 0.5
-				},
+        },
       config:{
           // range1:[270+170],
           count:500
@@ -127,6 +127,7 @@ export default {
         Sign:"",  //请求签名
         Lang:"zh", //非必填
         AppKey:"3q3z9ax7czqji7fe8m69rqrbzmi4yr94"
+        // demo:
         // ACCOUNT_ID:  1101220230418000000
         // ACCOUNT_NAME:  绿米测试账户5楼会议室
         // APP_ID:  1060859541382086656f0001
