@@ -2,40 +2,40 @@
   <div>
     
   <div class="echart1" v-if="isTudi2">
-    <div id="echartsTitleToLeft" style="opacity:0.7">土壤酸碱度&电导率1</div>
+    <div id="echartsTitleToLeft" >土壤酸碱度&电导率2</div>
     <farm-chart-1 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-1>
   </div>
   <div class="echart4" v-if="isTudi1">
-    <div id="echartsTitleToRight">ECharts入门示例4</div>
+    <div id="echartsTitleToRight">土壤酸碱度&电导率1</div>
     <farm-chart-4 @begin1="addSnow1" @stop1="removeSnow1"></farm-chart-4>
   </div>
   <div class="echart7" v-if="isTudi3">
-    <div id="echartsTitleToRight">ECharts入门示例7</div>
+    <div id="echartsTitleToRight">土壤酸碱度&电导率3</div>
     <farm-chart-7 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-7>
   </div>
   <div class="echart2" v-if="isTudi2">
-    <div id="echartsTitleToLeft" style="opacity:0.7">土壤温湿度2</div>
+    <div id="echartsTitleToLeft">土壤温湿度2</div>
     <farm-chart-2 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-2>
   </div>
   <div class="echart5" v-if="isTudi1">
-    <div id="echartsTitleToLeft">ECharts入门示例5</div>
+    <div id="echartsTitleToLeft">土壤温湿度1</div>
     <farm-chart-5 @begin1="addSnow1" @stop1="removeSnow1"></farm-chart-5>
   </div>
   <div class="echart8" v-if="isTudi3">
-    <div id="echartsTitleToLeft">ECharts入门示例8</div>
+    <div id="echartsTitleToLeft">土壤温湿度3</div>
     <farm-chart-8 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-8>
   </div>
 
   <div class="echart3" v-if="isTudi2">
-    <div id="echartsTitleToLeft" style="opacity:0.7">氮磷钾含量3</div>
+    <div id="echartsTitleToLeft">氮磷钾含量2</div>
     <farm-chart-3 @begin2="addSnow2" @stop2="removeSnow2"></farm-chart-3>
   </div>
   <div class="echart6" v-if="isTudi1">
-    <div id="echartsTitleToLeft">ECharts入门示例6</div>
+    <div id="echartsTitleToLeft">氮磷钾含量1</div>
     <farm-chart-6 @begin1="addSnow1" @stop1="removeSnow1"></farm-chart-6>
   </div>
   <div class="echart9" v-if="isTudi3">
-    <div id="echartsTitleToLeft">ECharts入门示例9</div>
+    <div id="echartsTitleToLeft">氮磷钾含量3</div>
     <farm-chart-9 @begin3="addSnow3" @stop3="removeSnow3"></farm-chart-9>
   </div>
   <div class="chart-wrapper" >
@@ -73,7 +73,7 @@ export default {
   name: "WisdomFarm",
   data() {
     return {
-      isTudi2: false,
+      isTudi2: true,
       isTudi1: false,
       isTudi3: false,
       effectController : {
@@ -185,6 +185,9 @@ export default {
           this.tudiBox1 = new THREE.Box3Helper(new THREE.Box3().setFromObject (this.tudis[0]).translate(new THREE.Vector3(0,0,-105)),0xffff00)
           this.tudiBox2 = new THREE.Box3Helper(new THREE.Box3().setFromObject (this.tudis[1]).translate(new THREE.Vector3(0,0,-95)),0xffff00)
           this.tudiBox3 = new THREE.Box3Helper(new THREE.Box3().setFromObject (this.tudis[2]).translate(new THREE.Vector3(0,0,-95)),0xffff00)
+
+          this.scene.add(this.tudiBox2)
+
           let geo = BufferGeometryUtils.mergeGeometries(geoArr, false)
           let edge = new THREE.EdgesGeometry(geo)
           new THREE.LineSegments(edge, new THREE.LineBasicMaterial({
@@ -235,11 +238,7 @@ export default {
       // this.controls.enableZoom = false
       //禁止右键拖动
       // this.controls.enablePan = false
-
-      // this.clock = new THREE.Clock()
-
       this.initSky()
-
 			window.addEventListener( 'resize', this.onWindowResize );
       // 添加动画
       this.animate()
@@ -252,19 +251,15 @@ export default {
       this.sun = new THREE.Vector3()
       this.scene.add(this.sky)
 
-     
-
       const uniforms = this.sky.material.uniforms;
       uniforms[ 'turbidity' ].value = this.effectController.turbidity;
 			uniforms[ 'rayleigh' ].value = this.effectController.rayleigh;
 			uniforms[ 'mieCoefficient' ].value = this.effectController.mieCoefficient;
 			uniforms[ 'mieDirectionalG' ].value = this.effectController.mieDirectionalG;
-
-      
+ 
       const phi = THREE.MathUtils.degToRad( this.effectController.azimuth - this.effectController.elevation);
       const theta = THREE.MathUtils.degToRad(this.effectController.azimuth);
       
-
       //Spherical( radius : 半径, phi : 与y轴的极角, theta : 绕y轴的赤道角 )
       this.sun.setFromSphericalCoords( 1, phi, theta );
       
@@ -306,11 +301,7 @@ export default {
           //打印点击的对象名称
           // console.log(objs)
           console.log(objs[0].object.name)
-          // console.log(objs[0].object.position)
-          // console.log(objs[0].object)
-          // console.log("mesh.position:",objs[0].object.position)
-          // console.log("mesh.worldPosition:",objs[0].object.getWorldPosition(vec))
-
+          
         if (objs[0].object.name === 'tudi_1') {
           this.isTudi2 = false
           this.scene.remove(this.tudiBox2)

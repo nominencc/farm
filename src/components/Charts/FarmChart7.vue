@@ -1,5 +1,5 @@
 <template>
-  <div id="main7" style="width:500px;height: 300px;" @click="handle" @mousedown="show"></div>
+  <div id="main7"></div>
 </template>
 
 <script>
@@ -9,17 +9,8 @@ export default {
   data() {
     return {
       option: {
-        // title: {
-        //   text: 'ECharts 入门示例7',
-        //   left: 'center',
-        //   textStyle: 
-        //   {
-        //     color:"#fff",
-        //     fontSize:10
-        //   }
-        // },
-        tooltip: {},  //实时显示被拖拽的点的data值的变化
-        
+        //实时显示被拖拽的点的data值的变化
+        tooltip: {},  
         toolbox:{
           show:true,
           left:100,
@@ -36,7 +27,8 @@ export default {
               },
               //图标默认颜色
               iconStyle:{
-                borderColor:"#fff"
+                borderColor:"#fff",
+                opacity:0.5
               },
               //鼠标悬停时图标的颜色
               emphasis:{
@@ -54,7 +46,8 @@ export default {
               },
               //图标默认颜色
               iconStyle:{
-                borderColor:"#fff"
+                borderColor:"#fff",
+                opacity:0.5
               },
               //鼠标悬停时图标的颜色
               emphasis:{
@@ -72,13 +65,15 @@ export default {
           data: ['酸碱度','电导率'],
           textStyle: {
             color: '#fff',
-            fontSize:15
+            fontSize:15,
+            opacity:0.5
           }
         },
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
           axisLabel: {
             color: '#fff',
+            opacity:0.5,
             fontSize: 12,
 
             //x轴文本自动换行
@@ -101,6 +96,7 @@ export default {
               }
               return newParamsName
             },
+
           }
         },
         yAxis: [
@@ -109,13 +105,16 @@ export default {
           position:"left",
           yAxisIndex:0,
           nameTextStyle:{
-            color:"#fff"
+            color:"#fff",
+            opacity:0.5
           },
           axisLabel: {
-            color: '#fff'
+            color: '#fff',
+            opacity:0.5
           },
+          //消除横线
           splitLine:{
-          show:true
+          show:false
           }
         },
         {
@@ -123,24 +122,39 @@ export default {
           position:"right",
           yAxisIndex:1,
           nameTextStyle:{
-            color:"#fff"
+            color:"#fff",
+            opacity:0.5
           },
           axisLabel: {
-            color: '#fff'
+            color: '#fff' 
           },
-        },
+        }
       ],
         //一组数值以及他们映射成的图
         series: [  
         {
           name: '酸碱度',
           type: 'bar',
-          data: [5, 20, 36, 10, 3, 20,11]
+          // smooth: true,
+          data: (() => {
+            let arr = []
+            for(let i = 0; i<7;i++){
+              arr.push((Math.random() * 5 + 4).toFixed(1))
+            }
+            return arr
+          })()
         },
         {
           name: '电导率',
-          type: 'bar',
-          data: [5, 20, 36, 10, 3, 20,11]
+          type: 'line',
+          smooth: true,
+          data: (() => {
+            let arr = []
+            for(let i = 0; i<7;i++){
+              arr.push((Math.random() * 65 + 5).toFixed(0))
+            }
+            return arr
+          })()
         }
       ]
       },
@@ -153,19 +167,6 @@ export default {
       this.myChart = echarts.init(document.getElementById('main7'));
       this.myChart.setOption(this.option);
       // console.log(this.myChart)
-    },
-    handle() { 
-      // this.option.series.push({
-      //   name: '销量1',
-      //   type: 'bar',
-      //   data: [5, 20, 36, 10, 10, 20]
-      // })
-
-      // console.log('option', this.option.series[0])
-      // this.myChart.setOption(this.option);
-    },
-    show() { 
-        // console.log('鼠标经过图表1')
     },
     //计算echarts字体大小
     fontSize(px) {  //传入字体大小
@@ -191,9 +192,8 @@ export default {
 </script>
 <style>
 #main7 {
-  background: linear-gradient(to right,#08609399,#344b5800);
-  /* background-color: #ff000033; */
-  /* opacity: 0.3; */
-  /* display: none; */
+  background: transparent;
+  width: 30vw;
+  height: 30vh;
 }
 </style>

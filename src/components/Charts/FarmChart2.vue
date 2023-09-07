@@ -158,7 +158,6 @@ export default {
     waterstart(){
       this.$emit("begin2")
       //子传父。让父组件的createExtra调用：this.createExtra()
-
     },
     waterstop(){
       this.$emit("stop2")
@@ -171,8 +170,6 @@ export default {
 </script>
 <style>
 #main2 {
-  /* background: linear-gradient(to left,#08609399,#344b5800); */
   background: transparent;
-
 }
 </style>

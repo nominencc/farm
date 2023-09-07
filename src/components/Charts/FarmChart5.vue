@@ -1,26 +1,14 @@
 <template>
-  <div id="main5" style="width:550px;height: 300px;" @click="handle" @mousedown="show"></div>
+  <div id="main5" style="width:30vw;height: 30vh;"></div>
 </template>
 
 <script>
-// import * as THREE from 'three'
 import * as echarts from 'echarts'
-// import {Snow} from '../../effect/snow'
-
-// import farm from '../../views/farm/WisdomFarm.vue'
 export default {
   name: 'ECharts5',
   data() {
     return {
       option: {
-        // title: {
-        //   text: 'ECharts 入门示例2',
-        //   left:"center",
-        //   textStyle: {
-        //     color: "#fff",
-        //     fontSize:15
-        //   }
-        // } ,
         tooltip: {},  //实时显示被拖拽的点的data值的变化
         //自定义按钮
         toolbox:{
@@ -38,7 +26,8 @@ export default {
               },
               //图标默认颜色
               iconStyle:{
-                borderColor:"#fff"
+                borderColor:"#fff",
+                opacity:0.5
               },
               //鼠标悬停时图标的颜色
               emphasis:{
@@ -56,7 +45,8 @@ export default {
               },
               //图标默认颜色
               iconStyle:{
-                borderColor:"#fff"
+                borderColor:"#fff",
+                opacity:0.5
               },
               //鼠标悬停时图标的颜色
               emphasis:{
@@ -73,14 +63,16 @@ export default {
           data: ['土壤温度','土壤湿度'],
           textStyle: {
             color:'#fff',
-            fontSize:15
+            fontSize:15,
+            opacity:0.5
           }
         },
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
           axisLabel: {
             color: '#fff',
-            fontSize:12
+            fontSize:12,
+            opacity:0.5
           }
         },
         yAxis: [
@@ -89,11 +81,14 @@ export default {
           position:"left",
           yAxisIndex:0,
           nameTextStyle:{
-            color:"#fff"
+            color:"#fff",
+            opacity:0.5
           },
           axisLabel: {
-            color: '#fff'
+            color: '#fff',
+            opacity:0.5
           },
+          //消除横线
           splitLine:{
           show:false
           }
@@ -103,10 +98,12 @@ export default {
           position:"right",
           yAxisIndex:1,
           nameTextStyle:{
-            color:"#fff"
+            color:"#fff",
+            opacity:0.5
           },
           axisLabel: {
-            color: '#fff'
+            color: '#fff',
+            opacity:0.5
           },
           splitLine:{
           show:false
@@ -115,23 +112,29 @@ export default {
       ],
         //一组数值以及他们映射成的图。 type：line(折线图)、bar(柱状图)、pie(饼图)、scatter(散点图)、graph(关系图、tree(树图))
         series:
-       [
+        [
         {
           yAxisIndex:0,
           name: '土壤温度',
           type: 'line',
           smooth: true,
-          data: [20, 30, 15, 18, 34, 20,25],
+          // data: [20, 30, 15, 18, 34, 20,25],
+          data: (() => {
+            let arr = []
+            for(let i = 0; i<7;i++){
+              arr.push(Math.random() * 65 + 5)
+            }
+            return arr
+          })()
         },
         {
           yAxisIndex:1,
           name: '土壤湿度',
           type: 'line',
           smooth: true,
-          data: [10, 15, 12, 14, 6, 8,15],
+          data:this.creatdata()
         }
         ]
-
       },
       myChart: null
     }
@@ -143,47 +146,30 @@ export default {
     initEcharts() {
       this.myChart = echarts.init(document.getElementById('main5'));
       this.myChart.setOption(this.option);
-    //   setTimeout(()=>{
-      
-    // },100)
-      // console.log(this.myChart)
+    },
+    creatdata(){
+      let arr = []
+      for(let i = 0; i<7;i++){
+        arr.push(Math.random() * 65 + 5)
+      }
+      return arr
     },
     
-    handle() { 
-      // this.option.series.push({
-      //   name: '销量1',
-      //   type: 'bar',
-      //   data: [5, 20, 36, 10, 10, 20]
-      // })
-
-      // console.log('option', this.option.series[0])
-      // this.myChart.setOption(this.option);
-    },
-    show() { 
-        // console.log('鼠标经过图表2')
-       
-    },
     waterstart(){
-      this.$emit("begin1")
+      this.$emit("begin3")
       //子传父。让父组件的createExtra调用：this.createExtra()
-
     },
     waterstop(){
-      this.$emit("stop1")
+      this.$emit("stop3")
     }
   },
-
   mounted() {
     this.initEcharts()
   }
 }
 </script>
 <style>
-#main5 {
-  background-color: #08609366;
-  background: linear-gradient(to left,#08609399,#344b5800);
-  text-align:center;
-  /* opacity: 1; */
-  /* visibility: hidden; */
+#main2 {
+  background: transparent;
 }
 </style>

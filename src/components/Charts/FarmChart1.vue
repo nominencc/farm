@@ -10,15 +10,6 @@ export default {
   data() {
     return {
       option: {
-        // title: {
-        //   text: 'ECharts 入门示例1',
-        //   left: 'center',
-        //   textStyle: 
-        //   {
-        //     color:"#fff",
-        //     fontSize:10
-        //   }
-        // },
         //实时显示被拖拽的点的data值的变化
         tooltip: {},  
         toolbox:{
@@ -106,6 +97,7 @@ export default {
               }
               return newParamsName
             },
+
           }
         },
         yAxis: [
@@ -198,17 +190,11 @@ export default {
     this.initEcharts()
   }
 }
-    // var myChart = echarts.init(document.getElementById("main1"))
-    // window.addEventListener("resize",function(){
-    // myChart.resize()
-    // })
-    
 </script>
 <style>
 #main1 {
   background: transparent;
   width:  30vw;
   height: 30vh;
-  /* background: linear-gradient(to left,#08609399,#344b5800); */
 }
 </style>

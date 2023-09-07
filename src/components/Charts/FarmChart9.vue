@@ -1,5 +1,5 @@
 <template>
-  <div id="main9" style="width:500px;height: 300px;" @click="handle" ></div>
+  <div id="main9" style="width:30vw;height: 30vh;"></div>
 </template>
 
 <script>
@@ -9,14 +9,6 @@ export default {
   data() {
     return {
       option: {
-        // title: {
-        //   text: 'ECharts 入门示例9',
-        //   left:"center",
-        //   textStyle: {
-        //     color: "#fff",
-        //     fontSize:10
-        //   }
-        // },
         tooltip: {},  //实时显示被拖拽的点的data值的变化
         toolbox:{
           show:true,
@@ -33,7 +25,8 @@ export default {
               },
               //图标默认颜色
               iconStyle:{
-                borderColor:"#fff"
+                borderColor:"#fff",
+                opacity:0.5
               },
               //鼠标悬停时图标的颜色
               emphasis:{
@@ -51,7 +44,8 @@ export default {
               },
               //图标默认颜色
               iconStyle:{
-                borderColor:"#fff"
+                borderColor:"#fff",
+                opacity:0.5
               },
               //鼠标悬停时图标的颜色
               emphasis:{
@@ -68,77 +62,98 @@ export default {
           data: ['氮','磷','钾'],
           textStyle: {
             color:'#fff',
-            fontSize:15
+            fontSize:15,
+            opacity:0.5
           }
         },
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
           axisLabel: {
             color: '#fff',
-            fontSize:12
+            fontSize:12,
+            opacity:0.5
+          },
+          axisLine:{
+            lineStyle:{
+              opacity:0.5
+            }
+          },
+          axisTick:{
+            //隐藏刻度线
+            show:false
           }
         },
         yAxis: {
           name:"含量：mg/kg",
           nameTextStyle:{
-            color:"#fff"
+            color:"#fff",
+            opacity:0.5
           },
           axisLabel: {
-            color: '#fff'
+            color: '#fff',
+            opacity:0.5
+          },
+          
+          //消除横线
+          splitLine:{
+          show:false
           }
         },
         series:   //一组数值以及他们映射成的图
         [
         {
           name: '氮',
-          type: 'bar',
-          data: [15, 25, 5, 19, 23, 10, 11]
+          type: 'line',
+          smooth: true,
+          data: (() => {
+            let arr = []
+            for(let i = 0; i<7;i++){
+              arr.push((Math.random() * 300 + 50).toFixed(0))
+            }
+            return arr
+          })()
         },
         {
           name: '磷',
-          type: 'bar',
-          data: [15, 25, 5, 19, 23, 10, 11]
+          type: 'line',
+          smooth: true,
+          data: (() => {
+            let arr = []
+            for(let i = 0; i<7;i++){
+              arr.push((Math.random() * 480 + 20).toFixed(0))
+            }
+            return arr
+          })()
         },
         {
           name: '钾',
-          type: 'bar',
-          data: [15, 25, 5, 19, 23, 10, 11]
+          type: 'line',
+          smooth: true,
+          data: (() => {
+            let arr = []
+            for(let i = 0; i<7;i++){
+              arr.push((Math.random() * 800 + 200).toFixed(0))
+            }
+            return arr
+          })()
         },
-]
+        ]
       },
       myChart: null
     }
   },
-
   methods: {
     initEcharts() {
       this.myChart = echarts.init(document.getElementById('main9'));
       this.myChart.setOption(this.option);
-    //   setTimeout(()=>{
-      
-    // },100)
-      // console.log(this.myChart)
-    },
-    
-    handle() { 
-      // this.option.series.push({
-      //   name: '销量1',
-      //   type: 'bar',
-      //   data: [5, 20, 36, 10, 10, 20]
-      // })
-
-      // console.log('option', this.option.series[0])
-      // this.myChart.setOption(this.option);
     },
     waterstart(){
       this.$emit("begin3")
       //子传父。让父组件的createExtra调用：this.createExtra()
-
     },
     waterstop(){
       this.$emit("stop3")
     }
-   
   },
 
   mounted() {
@@ -147,11 +162,8 @@ export default {
 }
 </script>
 <style>
-#main9 {
-  background-color: #08609366;
-  background: linear-gradient(to left,#08609399,#344b5800);
+#main3 {
+  background: transparent;
   text-align:center;
-  /* opacity: 1; */
-  /* visibility: hidden; */
 }
 </style>

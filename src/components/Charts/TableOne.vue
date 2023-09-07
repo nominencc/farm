@@ -1,12 +1,13 @@
 <template>
   <div class="main"  >
   <table>
-      <!-- <caption>土壤墒情</caption> -->
+      <!-- 标题> -->
     <tr>
     <th id="n1">检测参数</th>
     <th>当前值</th>
     <th>当前时间</th>
     </tr>
+    <!-- 列表参数 -->
     <tr>
         <td>土壤温度</td>
         <td>{{Currentdata2.temperature}}℃</td>
@@ -77,14 +78,15 @@ table{
     border-collapse:collapse;
     /* 文字缩进 */
     letter-spacing:1px;
-    font-size:  0.9em;;
     /* background-color: transparent ; */
 }
 tr{
     color:#fcf7f7cc;
     opacity: 0.7;
 }
-
+th,td{
+    font-size:  0.9em;
+}
 #n1 {
   text-align: left;
 }

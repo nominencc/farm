@@ -163,11 +163,7 @@ export default {
 </script>
 <style>
 #main3 {
-  /* background-color: #08609366;
-  background: linear-gradient(to left,#08609399,#344b5800); */
   background: transparent;
   text-align:center;
-  /* opacity: 1; */
-  /* visibility: hidden; */
 }
 </style>
