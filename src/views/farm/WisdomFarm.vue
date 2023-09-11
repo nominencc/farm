@@ -271,7 +271,7 @@ export default {
     onWindowResize() {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
-      // this.renderer.setSize( window.innerWidth, window.innerHeight );
+      this.renderer.setSize( window.innerWidth, window.innerHeight );
       this.render();
       // console.log("88888888:",this.effectController.azimuth)
     },

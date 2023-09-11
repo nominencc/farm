@@ -61,6 +61,7 @@ export default {
           top: '10px',
           right: '90px',
           data: ['土壤温度','土壤湿度'],
+          // data: ["土地1","土地2","土地3",'土壤温度','土壤湿度'],
           textStyle: {
             color:'#fff',
             fontSize:15,
@@ -113,6 +114,7 @@ export default {
         //一组数值以及他们映射成的图。 type：line(折线图)、bar(柱状图)、pie(饼图)、scatter(散点图)、graph(关系图、tree(树图))
         series:
         [
+          
         {
           yAxisIndex:0,
           name: '土壤温度',
