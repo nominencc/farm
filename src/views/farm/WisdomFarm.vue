@@ -1,40 +1,39 @@
 <template>
   <div>
-    
   <div class="echart4" v-if="isTudi1">
-    <div id="echartsTitleToRight">土壤酸碱度&电导率1</div>
+    <div id="echartsTitleToRight">土地1土壤酸碱度&电导率</div>
     <p-hand-conduct-1 @begin1="addSnow1" @stop1="removeSnow1"></p-hand-conduct-1>
   </div>
   <div class="echart1" v-if="isTudi2">
-    <div id="echartsTitleToLeft" >土壤酸碱度&电导率2</div>
+    <div id="echartsTitleToLeft" >土地2酸碱度&电导率</div>
     <p-hand-conduct-2 @begin2="addSnow2" @stop2="removeSnow2"></p-hand-conduct-2>
   </div>
   <div class="echart7" v-if="isTudi3">
-    <div id="echartsTitleToRight">土壤酸碱度&电导率3</div>
+    <div id="echartsTitleToRight">土地3酸碱度&电导率</div>
     <p-hand-conduct-3 @begin3="addSnow3" @stop3="removeSnow3"></p-hand-conduct-3>
   </div>
   <div class="echart5" v-if="isTudi1">
-    <div id="echartsTitleToLeft">土壤温湿度1</div>
+    <div id="echartsTitleToLeft">土地1温湿度</div>
     <temp-and-humi-1 @begin1="addSnow1" @stop1="removeSnow1"></temp-and-humi-1>
   </div>
   <div class="echart2" v-if="isTudi2">
-    <div id="echartsTitleToLeft">土壤温湿度2</div>
+    <div id="echartsTitleToLeft">土地2温湿度</div>
     <temp-and-humi-2 @begin2="addSnow2" @stop2="removeSnow2"></temp-and-humi-2>
   </div>
   <div class="echart8" v-if="isTudi3">
-    <div id="echartsTitleToLeft">土壤温湿度3</div>
+    <div id="echartsTitleToLeft">土地3温湿度</div>
     <temp-and-humi-3 @begin3="addSnow3" @stop3="removeSnow3"></temp-and-humi-3>
   </div>
   <div class="echart6" v-if="isTudi1">
-    <div id="echartsTitleToLeft">氮磷钾含量1</div>
+    <div id="echartsTitleToLeft">土地1氮磷钾含量</div>
     <Nk-p-1 @begin1="addSnow1" @stop1="removeSnow1"></Nk-p-1>
   </div>
   <div class="echart3" v-if="isTudi2">
-    <div id="echartsTitleToLeft">氮磷钾含量2</div>
+    <div id="echartsTitleToLeft">土地2氮磷钾含量</div>
     <Nk-p-2 @begin2="addSnow2" @stop2="removeSnow2"></Nk-p-2>
   </div>
   <div class="echart9" v-if="isTudi3">
-    <div id="echartsTitleToLeft">氮磷钾含量3</div>
+    <div id="echartsTitleToLeft">土地3氮磷钾含量</div>
     <Nk-p-3 @begin3="addSnow3" @stop3="removeSnow3"></Nk-p-3>
   </div>
   <div class="chart-wrapper" >
@@ -165,9 +164,7 @@ export default {
           // console.log('gltf', gltf)
           //model 就是group
           let group = gltf.scene || gltf.scene[0]
-
           let geoArr = []
-
           group.updateMatrixWorld()
           group.traverse(child => {
             if (child.isMesh) {
@@ -361,7 +358,6 @@ export default {
             // vec.speedX = Math.random() * 0.8 - 0.4
             vec.speedY =  1 + 0.1
             // vec.speedZ = Math.random() * 0.8 - 0.4
-
             this.pointList1.push(vec)
           }
           geometry.setFromPoints(this.pointList1)
@@ -401,7 +397,6 @@ export default {
 
       requestAnimationFrame(this.animateSnow1.bind(this))
       // requestAnimationFrame(this.animate1.bind(this))
-
     },
     addSnow1(){
       this.scene.add(this.points1)
@@ -421,7 +416,6 @@ export default {
             // vec.speedX = Math.random() * 0.8 - 0.4
             vec.speedY =  1 + 0.1
             // vec.speedZ = Math.random() * 0.8 - 0.4
-
             this.pointList2.push(vec)
           }
           geometry.setFromPoints(this.pointList2)
@@ -433,21 +427,17 @@ export default {
             depthTest: true,
             // color:"#ffffff"
           })
-
           return this.points2 = new THREE.Points(geometry,material)
     },
     animateSnow2(){   
     this.pointList2.forEach(vec => {
-
       vec.y -=vec.speedY
-
       if(vec.y < 15) {
         vec.x = Math.random() * (600+500) - 600 ,
         // vec.x = Math.random() * this.config.range - this.config.range/2
         vec.y = Math.random() * 250
         // vec.z = Math.random() * this.config.range - this.config.range / 2
         vec.z = Math.random() * (270+170) - 170
-
         // vec.speedX = Math.random() * 0.8 - 0.4
         vec.speedY =  1 + 0.1
         // vec.speedZ = Math.random() * 0.8 - 0.4
@@ -457,14 +447,11 @@ export default {
       }
       })
       this.points2.geometry.setFromPoints(this.pointList2)
-
       requestAnimationFrame(this.animateSnow2.bind(this))
       // requestAnimationFrame(this.animate1.bind(this))
-
     },
     addSnow2(){
       this.scene.add(this.points2)
-
       axios({
         //请求方式post或get 默认get
         method:"post",
@@ -479,8 +466,7 @@ export default {
           Time:this.headers.Time,
           Sign:this.createSign(),
           Lang:this.headers.Lang,
-        },
-        
+        }, 
         //请求参数
         data:{
           //请求意图 
@@ -498,8 +484,7 @@ export default {
          }
         ]
       },
-        timeout:10000,
-        
+        timeout:10000,       
       },
       )
       .then((res) =>{
@@ -513,7 +498,6 @@ export default {
     },
     removeSnow2(){
       this.scene.remove(this.points2)
-
       axios({
         //请求方式post或get 默认get
         method:"post",
